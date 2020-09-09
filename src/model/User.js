@@ -32,14 +32,31 @@ export class User extends Model {
     static findByEmail(email) {
         return User.getRef().doc(email)
     }
-
-    addContact(contact) {
+    static getContactsRef(email){
         return User.getRef()
-            .doc(this.email)
-            .collection('contacts')
-            .doc(btoa(contact.email)) // convert em base64 padrao ascii
-            .set(contact.toJSON())
+        .doc(email)
+        .collection('contacts')
     }
+    addContact(contact) {
+        return  getContactRef(this.email)
+                .doc(btoa(contact.email)) // convert em base64 padrao ascii
+                .set(contact.toJSON())
+    }
+
+    getContacts(){
+        return new Promise((resolve, reject) => {
+            getContactRef(this.email).onSnapshot(docs => {
+                let contacts = []
+                docs.forEach(doc => {
+                    let data = doc.data()
+                    data.id = doc.id
+                    contacts.push(data)
+                });
+                this.trigger('contatctschange', docs)
+                resolve(contacts)
+            })
+        })
+    }    
 
     get name() { return this._data.name }
     set name(name) { return this._data.name = name }
