@@ -7,6 +7,21 @@ Projeto desenvolvido como exemplo do Curso Completo de JavaScript na Udemy.com.
 ### Projeto
 ![WhatsApp Clone](https://firebasestorage.googleapis.com/v0/b/hcode-com-br.appspot.com/o/whatsapp.jpg?alt=media&token=5fc78e3b-4871-424f-abfa-b765f2515d0c)
 
+### Paste
+Crie um arquivo chamado config.js na raiz do projeto:
+```
+export default  {
+    apiKey: "SUA KEY",
+    authDomain: "SUA KEY",
+    databaseURL: "SUA KEY",
+    projectId: "SUA KEY",
+    storageBucket: "SUA KEY",
+    messagingSenderId: "SUA KEY",
+    appId: "SUA KEY",
+    measurementId: "SUA KEY"
+}
+```
+
 ### Recursos Usados
 
 Lista de recursos usados em aula para este projeto
